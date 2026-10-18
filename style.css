@@ -96,7 +96,7 @@ tbody tr:nth-child(even) {
 }
 
 /* About page image */
-.about-image {
+img.about-image {
   display: block;
   width: 250px;
   max-width: 100%;
@@ -104,4 +104,5 @@ tbody tr:nth-child(even) {
   margin: 20px auto 30px;
   border: 2px solid #d8dee8;
   border-radius: 8px;
+  box-sizing: border-box;
 }
