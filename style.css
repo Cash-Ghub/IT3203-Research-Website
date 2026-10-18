@@ -94,3 +94,14 @@ th {
 tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+/* About page image */
+.about-image {
+  display: block;
+  width: 250px;
+  max-width: 100%;
+  height: auto;
+  margin: 20px auto 30px;
+  border: 2px solid #d8dee8;
+  border-radius: 8px;
+}
