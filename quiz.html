@@ -37,283 +37,297 @@
 
     <div id="results" aria-live="polite"></div>
 
-    <div class="quiz-info">
-        <div>
-            <strong>Time Remaining:</strong>
-            <div id="timer">10:00</div>
-        </div>
-
-        <div>
-            <strong>Questions:</strong>
-            <span id="progressText">0 / 10 answered</span>
-            <div id="progress">
-                <div id="progressBar"></div>
-            </div>
-        </div>
+    <!-- START SCREEN -->
+    <div id="startScreen" class="quiz-start">
+        <h3>Ready to begin?</h3>
+        <p>
+            When you start, the 10-minute timer will begin.
+            Make sure you are ready before continuing.
+        </p>
+        <button type="button" id="startQuizBtn">Start Quiz</button>
     </div>
 
-    <form id="quizForm">
+    <!-- Quiz content -->
+    <div id="quizContent" hidden>
 
-        <!-- QUESTION 1: FILL IN THE BLANK -->
+        <div class="quiz-info">
+            <div>
+                <strong>Time Remaining:</strong>
+                <div id="timer">10:00</div>
+            </div>
 
-        <div class="question">
-            <h3>Question 1 (Fill in the Blank)</h3>
-            <p>
-                A web browser communicates with web servers
-                using HTTP and ______ to retrieve website resources.
-            </p>
-            <input type="text" id="q1"
-                   placeholder="Enter your answer">
+            <div>
+                <strong>Questions:</strong>
+                <span id="progressText">0 / 10 answered</span>
+                <div id="progress">
+                    <div id="progressBar"></div>
+                </div>
+            </div>
         </div>
 
-        <!-- QUESTION 2: FILL IN THE BLANK -->
+        <form id="quizForm">
 
-        <div class="question">
-            <h3>Question 2 (Fill in the Blank)</h3>
-            <p>
-                Tim Berners-Lee invented the World Wide Web
-                around the year ______.
-            </p>
-            <input type="text" id="q2"
-                   placeholder="Enter your answer">
-        </div>
+            <!-- QUESTION 1: FILL IN THE BLANK -->
 
-        <!-- QUESTION 3: MULTIPLE CHOICE -->
+            <div class="question">
+                <h3>Question 1 (Fill in the Blank)</h3>
+                <p>
+                    A web browser communicates with web servers
+                    using HTTP and ______ to retrieve website resources.
+                </p>
+                <input type="text" id="q1"
+                       placeholder="Enter your answer">
+            </div>
 
-        <div class="question">
-            <h3>Question 3 (Multiple Choice)</h3>
-            <p>What is the primary purpose of a web browser?</p>
+            <!-- QUESTION 2: FILL IN THE BLANK -->
 
-            <label>
-                <input type="radio" name="q3" value="a">
-                To create computer hardware
-            </label>
+            <div class="question">
+                <h3>Question 2 (Fill in the Blank)</h3>
+                <p>
+                    Tim Berners-Lee invented the World Wide Web
+                    around the year ______.
+                </p>
+                <input type="text" id="q2"
+                       placeholder="Enter your answer">
+            </div>
 
-            <label>
-                <input type="radio" name="q3" value="b">
-                To access and display websites
-            </label>
+            <!-- QUESTION 3: MULTIPLE CHOICE -->
 
-            <label>
-                <input type="radio" name="q3" value="c">
-                To replace internet servers
-            </label>
+            <div class="question">
+                <h3>Question 3 (Multiple Choice)</h3>
+                <p>What is the primary purpose of a web browser?</p>
 
-            <label>
-                <input type="radio" name="q3" value="d">
-                To design operating systems
-            </label>
-        </div>
+                <label>
+                    <input type="radio" name="q3" value="a">
+                    To create computer hardware
+                </label>
 
-        <!-- QUESTION 4 -->
+                <label>
+                    <input type="radio" name="q3" value="b">
+                    To access and display websites
+                </label>
 
-        <div class="question">
-            <h3>Question 4 (Multiple Choice)</h3>
-            <p>Which language controls the visual appearance of a webpage?</p>
+                <label>
+                    <input type="radio" name="q3" value="c">
+                    To replace internet servers
+                </label>
 
-            <label>
-                <input type="radio" name="q4" value="a">
-                HTML
-            </label>
+                <label>
+                    <input type="radio" name="q3" value="d">
+                    To design operating systems
+                </label>
+            </div>
 
-            <label>
-                <input type="radio" name="q4" value="b">
-                Java
-            </label>
+            <!-- QUESTION 4 -->
 
-            <label>
-                <input type="radio" name="q4" value="c">
-                CSS
-            </label>
+            <div class="question">
+                <h3>Question 4 (Multiple Choice)</h3>
+                <p>Which language controls the visual appearance of a webpage?</p>
 
-            <label>
-                <input type="radio" name="q4" value="d">
-                SQL
-            </label>
-        </div>
+                <label>
+                    <input type="radio" name="q4" value="a">
+                    HTML
+                </label>
 
-        <!-- QUESTION 5 -->
+                <label>
+                    <input type="radio" name="q4" value="b">
+                    Java
+                </label>
 
-        <div class="question">
-            <h3>Question 5 (Multiple Choice)</h3>
-            <p>Who created JavaScript?</p>
+                <label>
+                    <input type="radio" name="q4" value="c">
+                    CSS
+                </label>
 
-            <label>
-                <input type="radio" name="q5" value="a">
-                Tim Berners-Lee
-            </label>
+                <label>
+                    <input type="radio" name="q4" value="d">
+                    SQL
+                </label>
+            </div>
 
-            <label>
-                <input type="radio" name="q5" value="b">
-                Brendan Eich
-            </label>
+            <!-- QUESTION 5 -->
 
-            <label>
-                <input type="radio" name="q5" value="c">
-                Bill Gates
-            </label>
+            <div class="question">
+                <h3>Question 5 (Multiple Choice)</h3>
+                <p>Who created JavaScript?</p>
 
-            <label>
-                <input type="radio" name="q5" value="d">
-                Steve Jobs
-            </label>
-        </div>
+                <label>
+                    <input type="radio" name="q5" value="a">
+                    Tim Berners-Lee
+                </label>
 
-        <!-- QUESTION 6 -->
+                <label>
+                    <input type="radio" name="q5" value="b">
+                    Brendan Eich
+                </label>
 
-        <div class="question">
-            <h3>Question 6 (Multiple Choice)</h3>
-            <p>Which browser was originally released by Google in 2008?</p>
+                <label>
+                    <input type="radio" name="q5" value="c">
+                    Bill Gates
+                </label>
 
-            <label>
-                <input type="radio" name="q6" value="a">
-                Firefox
-            </label>
+                <label>
+                    <input type="radio" name="q5" value="d">
+                    Steve Jobs
+                </label>
+            </div>
 
-            <label>
-                <input type="radio" name="q6" value="b">
-                Safari
-            </label>
+            <!-- QUESTION 6 -->
 
-            <label>
-                <input type="radio" name="q6" value="c">
-                Internet Explorer
-            </label>
+            <div class="question">
+                <h3>Question 6 (Multiple Choice)</h3>
+                <p>Which browser was originally released by Google in 2008?</p>
 
-            <label>
-                <input type="radio" name="q6" value="d">
-                Google Chrome
-            </label>
-        </div>
+                <label>
+                    <input type="radio" name="q6" value="a">
+                    Firefox
+                </label>
 
-        <!-- QUESTION 7 -->
+                <label>
+                    <input type="radio" name="q6" value="b">
+                    Safari
+                </label>
 
-        <div class="question">
-            <h3>Question 7 (Multiple Choice)</h3>
-            <p>Which rendering engine is used by Firefox?</p>
+                <label>
+                    <input type="radio" name="q6" value="c">
+                    Internet Explorer
+                </label>
 
-            <label>
-                <input type="radio" name="q7" value="a">
-                WebKit
-            </label>
+                <label>
+                    <input type="radio" name="q6" value="d">
+                    Google Chrome
+                </label>
+            </div>
 
-            <label>
-                <input type="radio" name="q7" value="b">
-                Gecko
-            </label>
+            <!-- QUESTION 7 -->
 
-            <label>
-                <input type="radio" name="q7" value="c">
-                Blink
-            </label>
+            <div class="question">
+                <h3>Question 7 (Multiple Choice)</h3>
+                <p>Which rendering engine is used by Firefox?</p>
 
-            <label>
-                <input type="radio" name="q7" value="d">
-                Trident
-            </label>
-        </div>
+                <label>
+                    <input type="radio" name="q7" value="a">
+                    WebKit
+                </label>
 
-        <!-- QUESTION 8 -->
+                <label>
+                    <input type="radio" name="q7" value="b">
+                    Gecko
+                </label>
 
-        <div class="question">
-            <h3>Question 8 (Multiple Choice)</h3>
-            <p>What was the Browser Wars mainly about?</p>
+                <label>
+                    <input type="radio" name="q7" value="c">
+                    Blink
+                </label>
 
-            <label>
-                <input type="radio" name="q8" value="a">
-                Competition between web browsers
-            </label>
+                <label>
+                    <input type="radio" name="q7" value="d">
+                    Trident
+                </label>
+            </div>
 
-            <label>
-                <input type="radio" name="q8" value="b">
-                Competition between computer manufacturers
-            </label>
+            <!-- QUESTION 8 -->
 
-            <label>
-                <input type="radio" name="q8" value="c">
-                The invention of smartphones
-            </label>
+            <div class="question">
+                <h3>Question 8 (Multiple Choice)</h3>
+                <p>What was the Browser Wars mainly about?</p>
 
-            <label>
-                <input type="radio" name="q8" value="d">
-                The creation of social media
-            </label>
-        </div>
+                <label>
+                    <input type="radio" name="q8" value="a">
+                    Competition between web browsers
+                </label>
 
-        <!-- QUESTION 9 -->
+                <label>
+                    <input type="radio" name="q8" value="b">
+                    Competition between computer manufacturers
+                </label>
 
-        <div class="question">
-            <h3>Question 9 (Multiple Choice)</h3>
-            <p>What happened when Netscape released its browser source code in 1998?</p>
+                <label>
+                    <input type="radio" name="q8" value="c">
+                    The invention of smartphones
+                </label>
 
-            <label>
-                <input type="radio" name="q9" value="a">
-                Google Chrome was immediately created
-            </label>
+                <label>
+                    <input type="radio" name="q8" value="d">
+                    The creation of social media
+                </label>
+            </div>
 
-            <label>
-                <input type="radio" name="q9" value="b">
-                Internet Explorer was discontinued
-            </label>
+            <!-- QUESTION 9 -->
 
-            <label>
-                <input type="radio" name="q9" value="c">
-                The Mozilla project was created
-            </label>
+            <div class="question">
+                <h3>Question 9 (Multiple Choice)</h3>
+                <p>What happened when Netscape released its browser source code in 1998?</p>
 
-            <label>
-                <input type="radio" name="q9" value="d">
-                Apple created Safari
-            </label>
-        </div>
+                <label>
+                    <input type="radio" name="q9" value="a">
+                    Google Chrome was immediately created
+                </label>
 
-        <!-- QUESTION 10: MULTI-SELECTION -->
+                <label>
+                    <input type="radio" name="q9" value="b">
+                    Internet Explorer was discontinued
+                </label>
 
-        <div class="question">
-            <h3>Question 10 (Select All That Apply)</h3>
-            <p>
-                Which of the following are examples of
-                modern web browsers?
-                <strong>Select all correct answers.</strong>
-            </p>
+                <label>
+                    <input type="radio" name="q9" value="c">
+                    The Mozilla project was created
+                </label>
 
-            <label>
-                <input type="checkbox" name="q10" value="a">
-                Google Chrome
-            </label>
+                <label>
+                    <input type="radio" name="q9" value="d">
+                    Apple created Safari
+                </label>
+            </div>
 
-            <label>
-                <input type="checkbox" name="q10" value="b">
-                Mozilla Firefox
-            </label>
+            <!-- QUESTION 10: MULTI-SELECTION -->
 
-            <label>
-                <input type="checkbox" name="q10" value="c">
-                Microsoft Word
-            </label>
+            <div class="question">
+                <h3>Question 10 (Select All That Apply)</h3>
+                <p>
+                    Which of the following are examples of
+                    modern web browsers?
+                    <strong>Select all correct answers.</strong>
+                </p>
 
-            <label>
-                <input type="checkbox" name="q10" value="d">
-                Safari
-            </label>
+                <label>
+                    <input type="checkbox" name="q10" value="a">
+                    Google Chrome
+                </label>
 
-            <label>
-                <input type="checkbox" name="q10" value="e">
-                Microsoft Edge
-            </label>
-        </div>
+                <label>
+                    <input type="checkbox" name="q10" value="b">
+                    Mozilla Firefox
+                </label>
 
-        <div class="quiz-buttons">
-            <button type="submit" id="submitBtn">
-                Submit Quiz
-            </button>
+                <label>
+                    <input type="checkbox" name="q10" value="c">
+                    Microsoft Word
+                </label>
 
-            <button type="button" id="resetBtn">
-                Retake Quiz
-            </button>
-        </div>
+                <label>
+                    <input type="checkbox" name="q10" value="d">
+                    Safari
+                </label>
 
-    </form>
+                <label>
+                    <input type="checkbox" name="q10" value="e">
+                    Microsoft Edge
+                </label>
+            </div>
+
+            <div class="quiz-buttons">
+                <button type="submit" id="submitBtn">
+                    Submit Quiz
+                </button>
+
+                <button type="button" id="resetBtn">
+                    Retake Quiz
+                </button>
+            </div>
+
+        </form>
+    </div>
 
 </main>
 
@@ -333,13 +347,17 @@
     const PASSING_SCORE = 7;
 
     let timeRemaining = TIME_LIMIT;
-    let startTime = Date.now();
-    let timerInterval;
+    let startTime = null;
+    let timerInterval = null;
     let submitted = false;
+    let quizStarted = false;
 
     const form = document.getElementById("quizForm");
     const timerDisplay = document.getElementById("timer");
     const results = document.getElementById("results");
+    const startScreen = document.getElementById("startScreen");
+    const quizContent = document.getElementById("quizContent");
+    const startQuizBtn = document.getElementById("startQuizBtn");
 
     // Correct answers
     const answers = {
@@ -368,12 +386,7 @@
         "Question 10"
     ];
 
-    const questionTypes = [
-        "blank", "blank", "radio", "radio", "radio",
-        "radio", "radio", "radio", "radio", "checkbox"
-    ];
-
-    // Start the countdown
+    // Update the countdown timer
     function updateTimer() {
         const minutes = Math.floor(timeRemaining / 60);
         const seconds = timeRemaining % 60;
@@ -394,9 +407,6 @@
 
         timeRemaining--;
     }
-
-    updateTimer();
-    timerInterval = setInterval(updateTimer, 1000);
 
     // Track answered questions
     function updateProgress() {
@@ -456,11 +466,7 @@
 
     // Display readable answers
     function formatAnswer(number, answer) {
-        if (number === 1) {
-            return answer || "No answer provided";
-        }
-
-        if (number === 2) {
+        if (number === 1 || number === 2) {
             return answer || "No answer provided";
         }
 
@@ -526,7 +532,7 @@
         return answer ? choices[number][answer] : "No answer selected";
     }
 
-    // Get the correct answer 
+    // Get the correct answer
     function getCorrectAnswer(number) {
         if (number === 1) return "HTTPS";
         if (number === 2) return "1989 (approximately 1989–1991)";
@@ -558,23 +564,44 @@
         return userAnswer === answers["q" + number];
     }
 
-    // Prevents the fill-in-the-blank questions being interpreted as HTML in the result display
+    // Prevent user answers from being interpreted as HTML
     function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, function(char) {
-        const entities = {
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#39;"
-        };
-        return entities[char];
-    });
-}
-    
+        return String(value).replace(/[&<>"']/g, function(char) {
+            const entities = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            };
+
+            return entities[char];
+        });
+    }
+
+    // Start the quiz and begin the 10-minute countdown
+    function startQuiz() {
+        if (quizStarted) return;
+
+        quizStarted = true;
+        submitted = false;
+        timeRemaining = TIME_LIMIT;
+        startTime = Date.now();
+
+        startScreen.hidden = true;
+        quizContent.hidden = false;
+
+        updateProgress();
+        updateTimer();
+
+        timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    startQuizBtn.addEventListener("click", startQuiz);
+
     // Submit and grade quiz
     function submitQuiz(timeExpired = false) {
-        if (submitted) return;
+        if (!quizStarted || submitted) return;
 
         submitted = true;
         clearInterval(timerInterval);
@@ -597,9 +624,11 @@
             reviewHTML += `
                 <div class="answer-review ${correct ? "correct" : "incorrect"}">
                     <strong>${questions[i - 1]}</strong>
+
                     <p class="${correct ? "correct-text" : "incorrect-text"}">
                         ${correct ? "Correct (+1 point)" : "Incorrect (+0 points)"}
                     </p>
+
                     <p><strong>Your answer:</strong> ${userText}</p>
                     <p><strong>Correct answer:</strong> ${correctText}</p>
                 </div>
@@ -670,8 +699,12 @@
         form.reset();
 
         submitted = false;
+        quizStarted = true;
         timeRemaining = TIME_LIMIT;
         startTime = Date.now();
+
+        startScreen.hidden = true;
+        quizContent.hidden = false;
 
         results.style.display = "none";
         results.innerHTML = "";
