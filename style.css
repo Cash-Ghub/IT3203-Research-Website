@@ -324,5 +324,40 @@ img.about-image {
   .quiz-buttons button {
     width: 100%;
   }
+
+/* Quiz start screen */
+.quiz-start {
+  text-align: center;
+  margin: 25px 0;
+  padding: 25px;
+  background-color: #f2f5fa;
+  border: 1px solid #d8dee8;
+  border-radius: 8px;
+}
+
+.quiz-start h3 {
+  color: #203864;
+}
+
+.quiz-start button {
+  background-color: #203864;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quiz-start button:hover {
+  background-color: #456da8;
+}
+
+/* Keep hidden quiz content hidden */
+[hidden] {
+  display: none !important;
+}
+
 }
 
