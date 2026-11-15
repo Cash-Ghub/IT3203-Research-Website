@@ -709,7 +709,7 @@
         return answer ? choices[number][answer] : "No answer selected";
     }
 
-    // Get the correct answer in readable format
+    // Get the correct answer 
     function getCorrectAnswer(number) {
         if (number === 1) return "HTTPS";
         if (number === 2) return "1989 (approximately 1989–1991)";
@@ -741,6 +741,20 @@
         return userAnswer === answers["q" + number];
     }
 
+    // Prevents the fill-in-the-blank questions being interpreted as HTML in the result display
+    function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, function(char) {
+        const entities = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        };
+        return entities[char];
+    });
+}
+    
     // Submit and grade quiz
     function submitQuiz(timeExpired = false) {
         if (submitted) return;
@@ -760,7 +774,7 @@
 
             if (correct) score++;
 
-            const userText = formatAnswer(i, userAnswer);
+            const userText = escapeHTML(formatAnswer(i, userAnswer));
             const correctText = getCorrectAnswer(i);
 
             reviewHTML += `
