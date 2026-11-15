@@ -359,11 +359,6 @@ img.about-image {
   display: none !important;
 }
 
-/* Ensure hidden quiz sections stay hidden */
-[hidden] {
-    display: none !important;
-}
-
 /* Results screen */
 #resultsScreen {
     margin: 25px auto;
