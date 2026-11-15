@@ -370,3 +370,47 @@ img.about-image {
     text-align: center;
     margin-top: 25px;
 }
+
+/* History page image styling */
+.history-section {
+  margin-bottom: 35px;
+}
+
+.history-image {
+  max-width: 700px;
+  margin: 20px auto 30px;
+  text-align: center;
+}
+
+.history-image img {
+  display: block;
+  max-width: 100%;
+  max-height: 400px;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.history-image figcaption {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.history-image figcaption a {
+  color: #203864;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .history-image {
+    margin: 15px auto 25px;
+  }
+
+  .history-image img {
+    max-height: 300px;
+  }
+}
