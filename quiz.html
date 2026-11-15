@@ -581,7 +581,8 @@
     // Start the quiz and begin the 10-minute countdown
     function startQuiz() {
         if (quizStarted) return;
-
+        
+        quizIntro.hidden = true;
         quizStarted = true;
         submitted = false;
         timeRemaining = TIME_LIMIT;
