@@ -624,10 +624,6 @@
                 <div class="answer-review ${correct ? "correct" : "incorrect"}">
                     <strong>${questions[i - 1]}</strong>
 
-                    <p class="${correct ? "correct-text" : "incorrect-text"}">
-                        ${correct ? "Correct (+1 point)" : "Incorrect (+0 points)"}
-                    </p>
-
                     <p><strong>Your answer:</strong> ${userText}</p>
                     <p><strong>Correct answer:</strong> ${correctText}</p>
                 </div>
@@ -657,10 +653,6 @@
 
             <h3>Final Score: ${score} / 10 (${percentage}%)</h3>
 
-            <p><strong>Result:</strong>
-                ${passed ? "PASS" : "FAIL"}
-            </p>
-
             <p><strong>Time Spent:</strong> ${timeText}</p>
 
             ${timeExpired ? `
@@ -670,7 +662,7 @@
 
             <hr>
 
-            <h3>Question-by-Question Results</h3>
+            <h3>Results</h3>
 
             ${reviewHTML}
 
