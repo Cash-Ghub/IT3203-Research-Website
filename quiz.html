@@ -26,15 +26,13 @@
 
 <main>
 
-    <div class="quiz-intro">
+    <div class="quiz-intro" id="quizIntro">
         <h2>Test Your Knowledge</h2>
         <p>
-             Click the "Start Quiz" button to answer ten questions based on the information
+            Click the "Start Quiz" button to answer ten questions based on the information
             covered throughout this research website. You will have 10 minutes to complete the quiz.
         </p>
     </div>
-
-    <div id="results" aria-live="polite"></div>
 
     <!-- START BUTTON -->
     <div id="startScreen" class="quiz-start">
@@ -314,15 +312,20 @@
                 <button type="submit" id="submitBtn">
                     Submit Quiz
                 </button>
-
-                <button type="button" id="resetBtn">
-                    Retake Quiz
-                </button>
             </div>
 
         </form>
     </div>
+        <!-- RESULTS SCREEN -->
+<div id="resultsScreen" hidden>
+    <div id="results" aria-live="polite"></div>
 
+    <div class="quiz-buttons">
+        <button type="button" id="resetBtn">
+            Retake Quiz
+        </button>
+    </div>
+</div>
 </main>
 
 <footer>
@@ -349,6 +352,8 @@
     const form = document.getElementById("quizForm");
     const timerDisplay = document.getElementById("timer");
     const results = document.getElementById("results");
+    const resultsScreen = document.getElementById("resultsScreen");
+    const quizIntro = document.getElementById("quizIntro");
     const startScreen = document.getElementById("startScreen");
     const quizContent = document.getElementById("quizContent");
     const startQuizBtn = document.getElementById("startQuizBtn");
@@ -639,6 +644,11 @@
             minutesSpent + " minute(s), " +
             secondsSpent + " second(s)";
 
+        // Hide the questions and show the separate results screen
+        quizIntro.hidden = true;
+        quizContent.hidden = true;
+        resultsScreen.hidden = false;
+
         results.className = passed ? "pass" : "fail";
         results.style.display = "block";
 
@@ -675,9 +685,9 @@
 
         document.getElementById("submitBtn").disabled = true;
 
-        results.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+        resultsScreen.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
         });
     }
 
@@ -687,39 +697,43 @@
     });
 
     // Reset and restart quiz
-    document.getElementById("resetBtn").addEventListener("click", function() {
-        clearInterval(timerInterval);
+document.getElementById("resetBtn").addEventListener("click", function() {
+    clearInterval(timerInterval);
 
-        form.reset();
+    form.reset();
 
-        submitted = false;
-        quizStarted = true;
-        timeRemaining = TIME_LIMIT;
-        startTime = Date.now();
+    submitted = false;
+    quizStarted = true;
+    timeRemaining = TIME_LIMIT;
+    startTime = Date.now();
 
-        startScreen.hidden = true;
-        quizContent.hidden = false;
+    // Hide results and show quiz again
+    startScreen.hidden = true;
+    quizIntro.hidden = true;
+    resultsScreen.hidden = true;
+    quizContent.hidden = false;
 
-        results.style.display = "none";
-        results.innerHTML = "";
-        results.className = "";
+    results.style.display = "none";
+    results.innerHTML = "";
+    results.className = "";
 
-        timerDisplay.classList.remove("warning");
+    timerDisplay.classList.remove("warning");
 
-        form.querySelectorAll("input, button").forEach(element => {
-            element.disabled = false;
-        });
-
-        updateProgress();
-        updateTimer();
-
-        timerInterval = setInterval(updateTimer, 1000);
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    // Re-enable all quiz inputs and buttons
+    form.querySelectorAll("input, button").forEach(element => {
+        element.disabled = false;
     });
+
+    updateProgress();
+    updateTimer();
+
+    timerInterval = setInterval(updateTimer, 1000);
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
 
 </script>
 
