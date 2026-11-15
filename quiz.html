@@ -1,0 +1,869 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Browser Quiz | Research Report</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .quiz-intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: #e8effa;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        #timer {
+            font-size: 22px;
+            font-weight: bold;
+            color: #203864;
+        }
+
+        #timer.warning {
+            color: #c0392b;
+        }
+
+        .question {
+            border: 1px solid #d8dee8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 18px 0;
+            background: #ffffff;
+        }
+
+        .question h3 {
+            color: #203864;
+            margin-top: 0;
+        }
+
+        .question label {
+            display: block;
+            padding: 9px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .question label:hover {
+            background: #f0f4fa;
+        }
+
+        .question input[type="radio"],
+        .question input[type="checkbox"] {
+            margin-right: 9px;
+            accent-color: #203864;
+        }
+
+        .question input[type="text"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 11px;
+            border: 1px solid #b9c4d3;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        .quiz-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .quiz-buttons button {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn {
+            background: #203864;
+            color: white;
+        }
+
+        #submitBtn:hover {
+            background: #456da8;
+        }
+
+        #resetBtn {
+            background: #e1e6ee;
+            color: #203864;
+        }
+
+        #resetBtn:hover {
+            background: #cbd5e1;
+        }
+
+        #results {
+            display: none;
+            padding: 22px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            border: 2px solid #d8dee8;
+        }
+
+        #results h2 {
+            margin-top: 0;
+        }
+
+        .pass {
+            color: #18804b;
+            background: #e8f7ee;
+            border-color: #18804b !important;
+        }
+
+        .fail {
+            color: #bd3030;
+            background: #fff0f0;
+            border-color: #bd3030 !important;
+        }
+
+        .answer-review {
+            background: white;
+            color: #263238;
+            padding: 13px;
+            border-radius: 6px;
+            margin: 12px 0;
+            border-left: 5px solid #ccc;
+        }
+
+        .answer-review.correct {
+            border-left-color: #18804b;
+        }
+
+        .answer-review.incorrect {
+            border-left-color: #bd3030;
+        }
+
+        .correct-text {
+            color: #18804b;
+            font-weight: bold;
+        }
+
+        .incorrect-text {
+            color: #bd3030;
+            font-weight: bold;
+        }
+
+        #progress {
+            height: 9px;
+            background: #d8dee8;
+            border-radius: 10px;
+            overflow: hidden;
+            flex: 1;
+            min-width: 100px;
+        }
+
+        #progressBar {
+            height: 100%;
+            width: 0%;
+            background: #203864;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-buttons button {
+                width: 100%;
+            }
+
+            .quiz-info {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Web Browser Knowledge Quiz</h1>
+    <p>Test your understanding of web browsers, their history, and technology.</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="topic1.html">What is a Web Browser?</a>
+    <a href="topic2.html">History and Evolution</a>
+    <a href="references.html">References</a>
+    <a href="keyconcepts.html">Key Concepts</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="about.html">About</a>
+</nav>
+
+<main>
+
+    <div class="quiz-intro">
+        <h2>Test Your Knowledge</h2>
+        <p>
+            Answer all ten questions based on the information
+            covered throughout this research website.
+        </p>
+        <p>You have 10 minutes to complete the quiz.</p>
+    </div>
+
+    <div id="results" aria-live="polite"></div>
+
+    <div class="quiz-info">
+        <div>
+            <strong>Time Remaining:</strong>
+            <div id="timer">10:00</div>
+        </div>
+
+        <div>
+            <strong>Questions:</strong>
+            <span id="progressText">0 / 10 answered</span>
+            <div id="progress">
+                <div id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <form id="quizForm">
+
+        <!-- QUESTION 1: FILL IN THE BLANK -->
+
+        <div class="question">
+            <h3>Question 1 (Fill in the Blank)</h3>
+            <p>
+                A web browser communicates with web servers
+                using HTTP and ______ to retrieve website resources.
+            </p>
+            <input type="text" id="q1"
+                   placeholder="Enter your answer">
+        </div>
+
+        <!-- QUESTION 2: FILL IN THE BLANK -->
+
+        <div class="question">
+            <h3>Question 2 (Fill in the Blank)</h3>
+            <p>
+                Tim Berners-Lee invented the World Wide Web
+                around the year ______.
+            </p>
+            <input type="text" id="q2"
+                   placeholder="Enter your answer">
+        </div>
+
+        <!-- QUESTION 3: MULTIPLE CHOICE -->
+
+        <div class="question">
+            <h3>Question 3 (Multiple Choice)</h3>
+            <p>What is the primary purpose of a web browser?</p>
+
+            <label>
+                <input type="radio" name="q3" value="a">
+                To create computer hardware
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="b">
+                To access and display websites
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="c">
+                To replace internet servers
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="d">
+                To design operating systems
+            </label>
+        </div>
+
+        <!-- QUESTION 4 -->
+
+        <div class="question">
+            <h3>Question 4 (Multiple Choice)</h3>
+            <p>Which language controls the visual appearance of a webpage?</p>
+
+            <label>
+                <input type="radio" name="q4" value="a">
+                HTML
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="b">
+                Java
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="c">
+                CSS
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="d">
+                SQL
+            </label>
+        </div>
+
+        <!-- QUESTION 5 -->
+
+        <div class="question">
+            <h3>Question 5 (Multiple Choice)</h3>
+            <p>Who created JavaScript?</p>
+
+            <label>
+                <input type="radio" name="q5" value="a">
+                Tim Berners-Lee
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="b">
+                Brendan Eich
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="c">
+                Bill Gates
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="d">
+                Steve Jobs
+            </label>
+        </div>
+
+        <!-- QUESTION 6 -->
+
+        <div class="question">
+            <h3>Question 6 (Multiple Choice)</h3>
+            <p>Which browser was originally released by Google in 2008?</p>
+
+            <label>
+                <input type="radio" name="q6" value="a">
+                Firefox
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="b">
+                Safari
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="c">
+                Internet Explorer
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="d">
+                Google Chrome
+            </label>
+        </div>
+
+        <!-- QUESTION 7 -->
+
+        <div class="question">
+            <h3>Question 7 (Multiple Choice)</h3>
+            <p>Which rendering engine is used by Firefox?</p>
+
+            <label>
+                <input type="radio" name="q7" value="a">
+                WebKit
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="b">
+                Gecko
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="c">
+                Blink
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="d">
+                Trident
+            </label>
+        </div>
+
+        <!-- QUESTION 8 -->
+
+        <div class="question">
+            <h3>Question 8 (Multiple Choice)</h3>
+            <p>What was the Browser Wars mainly about?</p>
+
+            <label>
+                <input type="radio" name="q8" value="a">
+                Competition between web browsers
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="b">
+                Competition between computer manufacturers
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="c">
+                The invention of smartphones
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="d">
+                The creation of social media
+            </label>
+        </div>
+
+        <!-- QUESTION 9 -->
+
+        <div class="question">
+            <h3>Question 9 (Multiple Choice)</h3>
+            <p>What happened when Netscape released its browser source code in 1998?</p>
+
+            <label>
+                <input type="radio" name="q9" value="a">
+                Google Chrome was immediately created
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="b">
+                Internet Explorer was discontinued
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="c">
+                The Mozilla project was created
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="d">
+                Apple created Safari
+            </label>
+        </div>
+
+        <!-- QUESTION 10: MULTI-SELECTION -->
+
+        <div class="question">
+            <h3>Question 10 (Select All That Apply)</h3>
+            <p>
+                Which of the following are examples of
+                modern web browsers?
+                <strong>Select all correct answers.</strong>
+            </p>
+
+            <label>
+                <input type="checkbox" name="q10" value="a">
+                Google Chrome
+            </label>
+
+            <label>
+                <input type="checkbox" name="q10" value="b">
+                Mozilla Firefox
+            </label>
+
+            <label>
+                <input type="checkbox" name="q10" value="c">
+                Microsoft Word
+            </label>
+
+            <label>
+                <input type="checkbox" name="q10" value="d">
+                Safari
+            </label>
+
+            <label>
+                <input type="checkbox" name="q10" value="e">
+                Microsoft Edge
+            </label>
+        </div>
+
+        <div class="quiz-buttons">
+            <button type="submit" id="submitBtn">
+                Submit Quiz
+            </button>
+
+            <button type="button" id="resetBtn">
+                Retake Quiz
+            </button>
+        </div>
+
+    </form>
+
+</main>
+
+<footer>
+    <p>Research Report on Web Browsers</p>
+    <p>
+        This website was created as a class project for
+        <a href="https://ksuweb.github.io/IT3203/">
+            IT 3203
+        </a>.
+    </p>
+</footer>
+
+<script>
+    // Quiz settings
+    const TIME_LIMIT = 10 * 60;
+    const PASSING_SCORE = 7;
+
+    let timeRemaining = TIME_LIMIT;
+    let startTime = Date.now();
+    let timerInterval;
+    let submitted = false;
+
+    const form = document.getElementById("quizForm");
+    const timerDisplay = document.getElementById("timer");
+    const results = document.getElementById("results");
+
+    // Correct answers
+    const answers = {
+        q1: ["https", "https protocol"],
+        q2: ["1989", "1989-1991", "1991"],
+        q3: "b",
+        q4: "c",
+        q5: "b",
+        q6: "d",
+        q7: "b",
+        q8: "a",
+        q9: "c",
+        q10: ["a", "b", "d", "e"]
+    };
+
+    const questions = [
+        "Question 1",
+        "Question 2",
+        "Question 3",
+        "Question 4",
+        "Question 5",
+        "Question 6",
+        "Question 7",
+        "Question 8",
+        "Question 9",
+        "Question 10"
+    ];
+
+    const questionTypes = [
+        "blank", "blank", "radio", "radio", "radio",
+        "radio", "radio", "radio", "radio", "checkbox"
+    ];
+
+    // Start the countdown
+    function updateTimer() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+
+        timerDisplay.textContent =
+            String(minutes).padStart(2, "0") + ":" +
+            String(seconds).padStart(2, "0");
+
+        if (timeRemaining <= 60) {
+            timerDisplay.classList.add("warning");
+        }
+
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            submitQuiz(true);
+            return;
+        }
+
+        timeRemaining--;
+    }
+
+    updateTimer();
+    timerInterval = setInterval(updateTimer, 1000);
+
+    // Track answered questions
+    function updateProgress() {
+        let answered = 0;
+
+        for (let i = 1; i <= 10; i++) {
+            let hasAnswer = false;
+
+            if (i <= 2) {
+                hasAnswer =
+                    document.getElementById("q" + i)
+                    .value.trim() !== "";
+            } else if (i === 10) {
+                hasAnswer = document.querySelectorAll(
+                    'input[name="q10"]:checked'
+                ).length > 0;
+            } else {
+                hasAnswer = document.querySelector(
+                    'input[name="q' + i + '"]:checked'
+                ) !== null;
+            }
+
+            if (hasAnswer) answered++;
+        }
+
+        document.getElementById("progressText").textContent =
+            answered + " / 10 answered";
+
+        document.getElementById("progressBar").style.width =
+            (answered / 10 * 100) + "%";
+    }
+
+    form.addEventListener("input", updateProgress);
+    form.addEventListener("change", updateProgress);
+
+    // Get user's answer
+    function getUserAnswer(number) {
+        if (number <= 2) {
+            return document.getElementById("q" + number)
+                .value.trim();
+        }
+
+        if (number === 10) {
+            return Array.from(
+                document.querySelectorAll(
+                    'input[name="q10"]:checked'
+                )
+            ).map(input => input.value);
+        }
+
+        const selected = document.querySelector(
+            'input[name="q' + number + '"]:checked'
+        );
+
+        return selected ? selected.value : "";
+    }
+
+    // Display readable answers
+    function formatAnswer(number, answer) {
+        if (number === 1) {
+            return answer || "No answer provided";
+        }
+
+        if (number === 2) {
+            return answer || "No answer provided";
+        }
+
+        if (number === 10) {
+            if (!answer.length) return "No answer selected";
+
+            const names = {
+                a: "Google Chrome",
+                b: "Mozilla Firefox",
+                c: "Microsoft Word",
+                d: "Safari",
+                e: "Microsoft Edge"
+            };
+
+            return answer.map(value => names[value]).join(", ");
+        }
+
+        const choices = {
+            3: {
+                a: "To create computer hardware",
+                b: "To access and display websites",
+                c: "To replace internet servers",
+                d: "To design operating systems"
+            },
+            4: {
+                a: "HTML",
+                b: "Java",
+                c: "CSS",
+                d: "SQL"
+            },
+            5: {
+                a: "Tim Berners-Lee",
+                b: "Brendan Eich",
+                c: "Bill Gates",
+                d: "Steve Jobs"
+            },
+            6: {
+                a: "Firefox",
+                b: "Safari",
+                c: "Internet Explorer",
+                d: "Google Chrome"
+            },
+            7: {
+                a: "WebKit",
+                b: "Gecko",
+                c: "Blink",
+                d: "Trident"
+            },
+            8: {
+                a: "Competition between web browsers",
+                b: "Competition between computer manufacturers",
+                c: "The invention of smartphones",
+                d: "The creation of social media"
+            },
+            9: {
+                a: "Google Chrome was immediately created",
+                b: "Internet Explorer was discontinued",
+                c: "The Mozilla project was created",
+                d: "Apple created Safari"
+            }
+        };
+
+        return answer ? choices[number][answer] : "No answer selected";
+    }
+
+    // Get the correct answer in readable format
+    function getCorrectAnswer(number) {
+        if (number === 1) return "HTTPS";
+        if (number === 2) return "1989 (approximately 1989–1991)";
+
+        if (number === 10) {
+            return "Google Chrome, Mozilla Firefox, Safari, Microsoft Edge";
+        }
+
+        return formatAnswer(number, answers["q" + number]);
+    }
+
+    // Check whether an answer is correct
+    function checkAnswer(number, userAnswer) {
+        if (number <= 2) {
+            const normalized = userAnswer.toLowerCase()
+                .trim()
+                .replace(/[.!?]/g, "");
+
+            return answers["q" + number].includes(normalized);
+        }
+
+        if (number === 10) {
+            const correct = answers.q10;
+
+            return userAnswer.length === correct.length &&
+                correct.every(value => userAnswer.includes(value));
+        }
+
+        return userAnswer === answers["q" + number];
+    }
+
+    // Submit and grade quiz
+    function submitQuiz(timeExpired = false) {
+        if (submitted) return;
+
+        submitted = true;
+        clearInterval(timerInterval);
+
+        const endTime = Date.now();
+        const timeSpent = Math.floor((endTime - startTime) / 1000);
+
+        let score = 0;
+        let reviewHTML = "";
+
+        for (let i = 1; i <= 10; i++) {
+            const userAnswer = getUserAnswer(i);
+            const correct = checkAnswer(i, userAnswer);
+
+            if (correct) score++;
+
+            const userText = formatAnswer(i, userAnswer);
+            const correctText = getCorrectAnswer(i);
+
+            reviewHTML += `
+                <div class="answer-review ${correct ? "correct" : "incorrect"}">
+                    <strong>${questions[i - 1]}</strong>
+                    <p class="${correct ? "correct-text" : "incorrect-text"}">
+                        ${correct ? "Correct (+1 point)" : "Incorrect (+0 points)"}
+                    </p>
+                    <p><strong>Your answer:</strong> ${userText}</p>
+                    <p><strong>Correct answer:</strong> ${correctText}</p>
+                </div>
+            `;
+        }
+
+        const passed = score >= PASSING_SCORE;
+        const percentage = score * 10;
+
+        const minutesSpent = Math.floor(timeSpent / 60);
+        const secondsSpent = timeSpent % 60;
+
+        const timeText =
+            minutesSpent + " minute(s), " +
+            secondsSpent + " second(s)";
+
+        results.className = passed ? "pass" : "fail";
+        results.style.display = "block";
+
+        results.innerHTML = `
+            <h2>${passed ? "Congratulations! You Passed!" : "Quiz Not Passed"}</h2>
+
+            <h3>Final Score: ${score} / 10 (${percentage}%)</h3>
+
+            <p><strong>Result:</strong>
+                ${passed ? "PASS" : "FAIL"}
+            </p>
+
+            <p><strong>Time Spent:</strong> ${timeText}</p>
+
+            ${timeExpired ? `
+                <p><strong>Time limit reached.</strong>
+                Your quiz was automatically submitted.</p>
+            ` : ""}
+
+            <hr>
+
+            <h3>Question-by-Question Results</h3>
+
+            ${reviewHTML}
+
+            <p><strong>Passing requirement:</strong> 7 out of 10 (70%)</p>
+        `;
+
+        form.querySelectorAll("input, button").forEach(element => {
+            if (element.type !== "button") {
+                element.disabled = true;
+            }
+        });
+
+        document.getElementById("submitBtn").disabled = true;
+
+        results.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        submitQuiz(false);
+    });
+
+    // Reset and restart quiz
+    document.getElementById("resetBtn").addEventListener("click", function() {
+        clearInterval(timerInterval);
+
+        form.reset();
+
+        submitted = false;
+        timeRemaining = TIME_LIMIT;
+        startTime = Date.now();
+
+        results.style.display = "none";
+        results.innerHTML = "";
+        results.className = "";
+
+        timerDisplay.classList.remove("warning");
+
+        form.querySelectorAll("input, button").forEach(element => {
+            element.disabled = false;
+        });
+
+        updateProgress();
+        updateTimer();
+
+        timerInterval = setInterval(updateTimer, 1000);
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+</script>
+
+</body>
+</html>
